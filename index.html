@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation Hi-Fi Dématérialisée</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            background-color: rgba(25, 25, 40, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #4cc9f0;
+        }
+        
+        h1 {
+            color: #4cc9f0;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        
+        h2 {
+            color: #72efdd;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #4361ee;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: #72efdd;
+            margin: 20px 0 15px 0;
+            font-size: 1.4rem;
+        }
+        
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .flow-step {
+            background: linear-gradient(145deg, #2d3047, #1f2235);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 5px solid #4361ee;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .flow-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            background-color: #4cc9f0;
+            color: #1a1a2e;
+            font-weight: bold;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(76, 201, 240, 0.3);
+        }
+        
+        .step-title {
+            font-size: 1.5rem;
+            color: #72efdd;
+        }
+        
+        .step-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+        
+        .step-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 20px;
+        }
+        
+        .step-image {
+            flex: 0 0 100px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 60px;
+            border-radius: 4px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+            border: 1px solid #4a4a6d;
+            object-fit: cover;
+            object-position: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .thumbnail:hover {
+            transform: scale(1.1);
+            border-color: #4cc9f0;
+        }
+        
+        .image-label {
+            font-size: 0.7rem;
+            color: #a9a9b8;
+            margin-top: 3px;
+            text-align: center;
+        }
+        
+        .spec-box {
+            background-color: rgba(67, 97, 238, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #4361ee;
+        }
+        
+        .cable-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .cable-item {
+            background-color: rgba(45, 48, 71, 0.7);
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid #72efdd;
+        }
+        
+        .product-name {
+            font-weight: bold;
+            color: #4cc9f0;
+        }
+        
+        .connection-arrow {
+            text-align: center;
+            margin: 10px 0;
+            color: #4cc9f0;
+            font-size: 1.8rem;
+        }
+        
+        .power-section {
+            background: linear-gradient(145deg, #2d3047, #1f2235);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+            border-left: 5px solid #f72585;
+        }
+        
+        .power-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .power-item {
+            background-color: rgba(67, 97, 238, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #4361ee;
+        }
+        
+        .power-item .thumbnail {
+            width: 100%;
+            height: 60px;
+        }
+        
+        .photo-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .photo-item {
+            flex: 0 0 100px;
+            text-align: center;
+        }
+        
+        .photo-item .thumbnail {
+            width: 90px;
+            height: 60px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #4a4a6d;
+            color: #a9a9b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Styles spécifiques pour les étapes 5 et 6 */
+        .parallel-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .parallel-step {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        @media (max-width: 768px) {
+            .step-content {
+                flex-direction: column;
+            }
+            
+            .step-text {
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .step-image {
+                width: 100%;
+                flex: none;
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .cable-list, .power-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .photo-item {
+                flex: 0 0 80px;
+            }
+            
+            .parallel-steps {
+                flex-direction: column;
+            }
+            
+            .parallel-step {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-wave-square"></i> Installation Hi-Fi Dématérialisée</h1>
+        </header>
+        
+        <section class="flow-container">
+            <h2><i class="fas fa-project-diagram"></i> Flux du Signal Audio</h2>
+            
+            <!-- Étape 1 -->
+            <div class="flow-step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Source et Contrôle</div>
+                </div>
+                <div class="step-content">
+                    <div class="step-text">
+                        <h3>Routeur Bbox WiFi 7</h3>
+                        <p>Point d'entrée du réseau domestique.</p>
+                        
+                        <h3>iPad Pro M2 11"</h3>
+                        <p>Interface de contrôle sans fil (WiFi 7) permettant de piloter l'ensemble du système via les applications :</p>
+                        <ul>
+                            <li>GentooPlayer</li>
+                            <li>HQPlayer</li>
+                        </ul>
+                    </div>
+                    <div class="step-image">
+                        <div>
+                            <a href="https://ibb.co/xtGPw2tZ" target="_blank">
+                                <img src="https://i.ibb.co/xtGPw2tZ/Bbox-Wifi7.jpg" alt="Routeur Bbox WiFi 7" class="thumbnail">
+                            </a>
+                            <div class="image-label">Routeur</div>
+                        </div>
+                        <div style="margin-left: 10px;">
+                            <a href="https://ibb.co/gHhTKBZ" target="_blank">
+                                <img src="https://i.ibb.co/gHhTKBZ/IPad-Pro-11-M2.jpg" alt="iPad Pro M2 11" class="thumbnail">
+                            </a>
+                            <div class="image-label">iPad Pro</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="connection-arrow">
+                <i class="fas fa-arrow-down"></i>
+                <div>via Ethernet avec filtre réseau</div>
+            </div>
+            
+            <!-- Étape 2 -->
+            <div class="flow-step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Filtrage Réseau</div>
+                </div>
+                <div class="step-content">
+                    <div class="step-text">
+                        <h3>Filtre Network Acoustics Eno 2</h3>
+                        <p>Positionné entre le routeur et le serveur.</p>
+                        
+                        <div class="spec-box">
+                            <p><strong>Connexion :</strong> Câble réseau <span class="product-name">BIVANI CAT 8</span> audiophile, optimisé pour réduire les interférences.</p>
+                        </div>
+                    </div>
+                    <div class="step-image">
+                        <a href="https://ibb.co/rKQXKqZG" target="_blank">
+                            <img src="https://i.ibb.co/rKQXKqZG/Filtre-Network-Acoustics-Eno2.jpg" alt="Filtre Network Acoustics Eno 2" class="thumbnail">
+                        </a>
+                        <div class="image-label">Filtre</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="connection-arrow">
+                <i class="fas fa-arrow-down"></i>
+                <div>via Câble Réseau Audiophile</div>
+            </div>
+            
+            <!-- Étape 3 -->
+            <div class="flow-step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Cœur du Système : Serveur Audio</div>
+                </div>
+                <div class="step-content">
+                    <div class="step-text">
+                        <h3>Serveur HDPlex H5 Fanless</h3>
+                        <p>Ordinateur audiophile passif (sans ventilateur) dédié à la lecture musicale haute résolution.</p>
+                        
+                        <div class="spec-box">
+                            <h4>Configuration interne :</h4>
+                            <ul>
+                                <li><strong>SSD NVMe 1 To</strong> : Système d'exploitation GentooPlayer optimisé</li>
+                                <li><strong>SSD NVMe 4 To</strong> : Bibliothèque musicale</li>
+                                <li><strong>Carte JCAT NET Card XE EVO</strong> : carte réseau ethernet Audiophile synchronisée avec masterclock 20 mhz</li>
+                                <li><strong>Carte JCAT USB XE EVO</strong> : carte USB Audiophile synchronisée avec masterclock 20 mhz</li>
+                                <li><strong>Câblage interne Mundorf/Duelund</strong> : Fils de haute qualité pour les connexions internes</li>
+                            </ul>
+                        </div>
+                        <p><strong>Sortie :</strong> USB Type B vers le convertisseur µDDC via câble <span class="product-name">Tubulus Concentrus</span></p>
+                    </div>
+                    <div class="step-image">
+                        <a href="https://ibb.co/wNmTXXfq" target="_blank">
+                            <img src="https://i.ibb.co/wNmTXXfq/Serveur-Hdplex-H5-Fanless.jpg" alt="Serveur HDPlex H5 Fanless" class="thumbnail">
+                        </a>
+                        <div class="image-label">Serveur</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="connection-arrow">
+                <i class="fas fa-arrow-down"></i>
+                <div>via USB Audiophile</div>
+            </div>
+            
+            <!-- Étape 4 -->
+            <div class="flow-step">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Synchronisation Masterclock</div>
+                </div>
+                <div class="step-content">
+                    <div class="step-text">
+                        <h3>Masterclock By Watt Cat</h3>
+                        <p>Horloge de référence OCXO (Oven-Controlled Crystal Oscillator) ultra-stable.</p>
+                        
+                        <div class="spec-box">
+                            <h4>Caractéristiques :</h4>
+                            <ul>
+                                <li>Horloge OCXO ultra-stable</li>
+                                <li>3 sorties BNC 50 ou 75 ohms</li>
+                                <li>Sélection sinus ou carré sur chaque sortie BNC</li>
+                                <li>Génération de multiples fréquences d'horloge</li>
+                            </ul>
+                            
+                            <h4>Synchronisation :</h4>
+                            <ol>
+                                <li><strong>Carte JCAT NET Card XE EVO</strong> → 20MHz (BNC 50Ω)</li>
+                                <li><strong>Carte JCAT USB XE EVO</strong> → 20MHz (BNC 50Ω)</li>
+                                <li><strong>LAiV Harmony µDDC</strong> → 10MHz (BNC 50Ω)</li>
+                            </ol>
+                            <p>Câbles BNC <span class="product-name">Harmonic Technology</span> 50 Ohms sur les 3 sorties</p>
+                        </div>
+                    </div>
+                    <div class="step-image">
+                        <a href="https://ibb.co/hF7CkVjP" target="_blank">
+                            <img src="https://i.ibb.co/hF7CkVjP/Masterclock-Watt-Cat.jpg" alt="Masterclock Watt Cat" class="thumbnail">
+                        </a>
+                        <div class="image-label">Masterclock</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Étape 5 et 6 en parallèle -->
+            <div class="parallel-steps">
+                <!-- Étape 5 -->
+                <div class="flow-step parallel-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Conversion USB → I2S</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-text">
+                            <h3>LAiV Harmony µDDC</h3>
+                            <p>Convertisseur USB vers I2S de très haute qualité, transformant le signal USB du serveur en signal I2S natif pour le DAC.</p>
+                            
+                            <div class="spec-box">
+                                <h4>Connexions :</h4>
+                                <ul>
+                                    <li><strong>Entrée :</strong> USB Type B depuis le serveur (câble Tubulus Concentrus)</li>
+                                    <li><strong>Sortie :</strong> I2S HDMI vers le DAC (câble Tubulus Concentrus)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="step-image">
+                            <a href="https://ibb.co/4Rs2bcS5" target="_blank">
+                                <img src="https://i.ibb.co/4Rs2bcS5/LAi-V-Harmony-u-DDC.jpg" alt="LAiV Harmony µDDC" class="thumbnail">
+                            </a>
+                            <div class="image-label">µDDC</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Étape 6 -->
+                <div class="flow-step parallel-step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Conversion Numérique-Analogique</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-text">
+                            <h3>DAC Holo Spring 3 Level 2</h3>
+                            <p>Convertisseur numérique-analogique de référence avec architecture R2R discrète.</p>
+                            
+                            <div class="spec-box">
+                                <h4>Caractéristiques :</h4>
+                                <ul>
+                                    <li>Architecture R2R discrète</li>
+                                    <li>Entrée I2S HDMI privilégiée</li>
+                                </ul>
+                                
+                                <h4>Connexions :</h4>
+                                <ul>
+                                    <li><strong>Entrée :</strong> I2S HDMI depuis le µDDC via câble <span class="product-name">Tubulus Concentrus I2S</span></li>
+                                    <li><strong>Sortie :</strong> Signal analogique RCA vers l'amplificateur</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="step-image">
+                            <a href="https://ibb.co/hRmyGB6B" target="_blank">
+                                <img src="https://i.ibb.co/hRmyGB6B/DAC-Holo-Spring-3-Level-2.jpg" alt="DAC Holo Spring 3 Level 2" class="thumbnail">
+                            </a>
+                            <div class="image-label">DAC</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="connection-arrow">
+                <i class="fas fa-arrow-down"></i>
+                <div>via Signal Audio Analogique</div>
+            </div>
+            
+            <!-- Étape 7 -->
+            <div class="flow-step">
+                <div class="step-header">
+                    <div class="step-number">7</div>
+                    <div class="step-title">Amplification</div>
+                </div>
+                <div class="step-content">
+                    <div class="step-text">
+                        <h3>Amplificateur Sugden A21 Signature (Class A)</h3>
+                        <p>Amplificateur intégré haute-fidélité en classe A pure.</p>
+                        
+                        <div class="spec-box">
+                            <h4>Connexions :</h4>
+                                <ul>
+                                <li><strong>Entrée :</strong> RCA depuis le DAC via câble de modulation <span class="product-name">Tubulus Concentrus RCA</span></li>
+                                <li><strong>Sortie :</strong> Enceintes via câble HP <span class="product-name">JSV Audio Signature 2</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="step-image">
+                        <a href="https://ibb.co/ZzG3Z6bK" target="_blank">
+                            <img src="https://i.ibb.co/ZzG3Z6bK/Ampli-Sugden-A21-Signature.jpg" alt="Amplificateur Sugden A21 Signature" class="thumbnail">
+                        </a>
+                        <div class="image-label">Ampli</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="connection-arrow">
+                <i class="fas fa-arrow-down"></i>
+                <div>via Câbles Haut-Parleurs</div>
+            </div>
+            
+            <!-- Étape 8 -->
+            <div class="flow-step">
+                <div class="step-header">
+                    <div class="step-number">8</div>
+                    <div class="step-title">Diffusion Acoustique</div>
+                </div>
+                <div class="step-content">
+                    <div class="step-text">
+                        <h3>Enceintes Colonnes JMR Euterpe Suprême</h3>
+                        <p>Enceintes haute-fidélité de référence.</p>
+                        
+                        <p><strong>Connexion :</strong> Câbles HP <span class="product-name">JSV Audio Signature 2</span> depuis l'amplificateur</p>
+                    </div>
+                    <div class="step-image">
+                        <a href="https://ibb.co/bRqXv40p" target="_blank">
+                            <img src="https://i.ibb.co/bRqXv40p/Enceintes-Colonnes-JMR-Euterpe-Supr-me.jpg" alt="Enceintes Colonnes JMR Euterpe Suprême" class="thumbnail">
+                        </a>
+                        <div class="image-label">Enceintes</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="power-section">
+            <h2><i class="fas fa-bolt"></i> Alimentations Électriques</h2>
+            
+            <div class="power-grid">
+                <div class="power-item">
+                    <h3><i class="fas fa-plug"></i> Alimentation linéaire Lynx Suprême Double</h3>
+                    <p><strong>Alimentation pour :</strong></p>
+                    <ul>
+                        <li>Serveur HDPlex H5</li>
+                        <li>Carte JCAT NET Card XE EVO</li>
+                    </ul>
+                    <div class="spec-box">
+                        <p><strong>Spécifications :</strong></p>
+                        <p>24V / 6A + 5V / 3A</p>
+                        <p>Grade Audio avec condensateurs Lefson</p>
+                    </div>
+                    <a href="https://ibb.co/3mDKC6DG" target="_blank">
+                        <img src="https://i.ibb.co/3mDKC6DG/Alimentation-Double-Lynx.jpg" alt="Alimentation Linéaire Double Lynx" class="thumbnail">
+                    </a>
+                </div>
+                
+                <div class="power-item">
+                    <h3><i class="fas fa-plug"></i> Alimentation linéaire Lynx Suprême Triple</h3>
+                    <p><strong>Alimentation pour :</strong></p>
+                    <ul>
+                        <li>LAiV Harmony µDDC</li>
+                        <li>Carte JCAT USB XE EVO</li>
+                        <li>Masterclock Watt Cat</li>
+                    </ul>
+                    <div class="spec-box">
+                        <p><strong>Spécifications :</strong></p>
+                        <p>12V / 4A + 5V / 4A + 5V / 4A</p>
+                        <p>Grade Audio avec condensateurs Lefson</p>
+                        <p>Triple rail indépendant</p>
+                    </div>
+                    <a href="https://ibb.co/FLmnjw8m" target="_blank">
+                        <img src="https://i.ibb.co/FLmnjw8m/Alimentation-Lin-aire-triple-Lynx.jpg" alt="Alimentation Linéaire Triple Lynx" class="thumbnail">
+                    </a>
+                </div>
+                
+                <div class="power-item">
+                    <h3><i class="fas fa-plug"></i> Alimentation à découpage IFI Audio iPower Elite 2</h3>
+                    <p><strong>Alimentation supplémentaire pour :</strong></p>
+                    <ul>
+                        <li>Routeur Bbox Wifi 7</li>
+                    </ul>
+                    <div class="spec-box">
+                        <p><strong>Spécifications :</strong></p>
+                        <p>12 V / 4A</p>
+                    </div>
+                    <a href="https://ibb.co/LXTTP1qF" target="_blank">
+                        <img src="https://i.ibb.co/LXTTP1qF/Alimentation-Ifi-Audio-Power-Elite-2.jpg" alt="Alimentation IFI Audio iPower Elite 2" class="thumbnail">
+                    </a>
+                </div>
+                
+                <div class="power-item">
+                    <h3><i class="fas fa-plug"></i> Barrette Multiprise Vovox Excelsius</h3>
+                    <p>Multiprise audiophile haute qualité pour l'alimentation secteur des éléments suivants :</p>
+                    <ul>
+                        <li>DAC Holo Spring 3 Level 2</li>
+                        <li>Amplificateur Sugden A21 Signature</li>
+                        <li>Alimentation linéaire Lynx Suprême Double</li>
+                        <li>Alimentation linéaire Lynx Suprême Triple</li>
+                    </ul>
+                    <div class="spec-box">
+                        <p><strong>Câbles secteur :</strong> Câbles d'alimentation <span class="product-name">DIY Acrolink 4030</span> avec prises <span class="product-name">Charlin/VBORG</span></p>
+                    </div>
+                    <a href="https://ibb.co/jNd0NML" target="_blank">
+                        <img src="https://i.ibb.co/jNd0NML/Barrette-Secteur-Vovox-Excelsus.jpg" alt="Barrette Vovox Excelsus" class="thumbnail">
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cable-section">
+            <h2><i class="fas fa-link"></i> Câblage Complet du Système</h2>
+            
+            <div class="cable-list">
+                <div class="cable-item">
+                    <p><span class="product-name">BIVANI CAT 8</span> : Routeur → Filtre Network Acoustics → Serveur (via JCAT NET Card)</p>
+                </div>
+                
+                <div class="cable-item">
+                    <p><span class="product-name">Tubulus Concentrus USB</span> : Serveur (JCAT USB Card) → LAiV µDDC</p>
+                </div>
+                
+                <div class="cable-item">
+                    <p><span class="product-name">Tubulus Concentrus I2S</span> : LAiV µDDC → DAC Holo Spring 3</p>
+                </div>
+                
+                <div class="cable-item">
+                    <p><span class="product-name">Harmonic Technology BNC 50Ω</span> (x3) : Masterclock → JCAT NET (20MHz), JCAT USB (20MHz), µDDC (10MHz)</p>
+                </div>
+                
+                <div class="cable-item">
+                    <p><span class="product-name">Tubulus Concentrus RCA</span> : DAC → Amplificateur</p>
+                </div>
+                
+                <div class="cable-item">
+                    <p><span class="product-name">JSV Audio Signature 2</span> : Amplificateur → Enceintes JMR Euterpe Supreme</p>
+                </div>
+                
+                <div class="cable-item">
+                    <p><span class="product-name">DIY Acrolink 4030 avec prises Charlin/VBORG</span> : Barrette Vovox → DAC, Ampli, 2 alimentations Lynx</p>
+                </div>
+                
+                <div class="cable-item">
+                    <p><span class="product-name">Mundorf/Duelund</span> : Câblage interne du serveur HDPlex H5</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="gallery-section">
+            <h2><i class="fas fa-images"></i> Galerie des Composants</h2>
+            
+            <div class="photo-gallery">
+                <div class="photo-item">
+                    <a href="https://ibb.co/xtGPw2tZ" target="_blank">
+                        <img src="https://i.ibb.co/xtGPw2tZ/Bbox-Wifi7.jpg" alt="Routeur Bbox WiFi 7" class="thumbnail">
+                    </a>
+                    <p>Routeur</p>
+                </div>
+                
+                <div class="photo-item">
+                    <a href="https://ibb.co/gHhTKBZ" target="_blank">
+                        <img src="https://i.ibb.co/gHhTKBZ/IPad-Pro-11-M2.jpg" alt="iPad Pro M2" class="thumbnail">
+                    </a>
+                    <p>iPad</p>
+                </div>
+                
+                <div class="photo-item">
+                    <a href="https://ibb.co/rKQXKqZG" target="_blank">
+                        <img src="https://i.ibb.co/rKQXKqZG/Filtre-Network-Acoustics-Eno2.jpg" alt="Filtre Network Acoustics" class="thumbnail">
+                    </a>
+                    <p>Filtre</p>
+                </div>
+                
+                <div class="photo-item">
+                    <a href="https://ibb.co/wNmTXXfq" target="_blank">
+                        <img src="https://i.ibb.co/wNmTXXfq/Serveur-Hdplex-H5-Fanless.jpg" alt="Serveur HDPlex H5" class="thumbnail">
+                    </a>
+                    <p>Serveur</p>
+                </div>
+                
+                <div class="photo-item">
+                    <a href="https://ibb.co/hF7CkVjP" target="_blank">
+                        <img src="https://i.ibb.co/hF7CkVjP/Masterclock-Watt-Cat.jpg" alt="Masterclock Watt Cat" class="thumbnail">
+                    </a>
+                    <p>Masterclock</p>
+                </div>
+                
+                <div class="photo-item">
+                    <a href="https://ibb.co/4Rs2bcS5" target="_blank">
+                        <img src="https://i.ibb.co/4Rs2bcS5/LAi-V-Harmony-u-DDC.jpg" alt="LAiV Harmony µDDC" class="thumbnail">
+                    </a>
+                    <p>µDDC</p>
+                </div>
+                
+                <div class="photo-item">
+                    <a href="https://ibb.co/hRmyGB6B" target="_blank">
+                        <img src="https://i.ibb.co/hRmyGB6B/DAC-Holo-Spring-3-Level-2.jpg" alt="DAC Holo Spring 3" class="thumbnail">
+                    </a>
+                    <p>DAC</p>
+                </div>
+                
+                <div class="photo-item">
+                    <a href="https://ibb.co/ZzG3Z6bK" target="_blank">
+                        <img src="https://i.ibb.co/ZzG3Z6bK/Ampli-Sugden-A21-Signature.jpg" alt="Ampli Sugden A21" class="thumbnail">
+                    </a>
+                    <p>Ampli</p>
+                </div>
+                
+                <div class="photo-item">
+                    <a href="https://ibb.co/bRqXv40p" target="_blank">
+                        <img src="https://i.ibb.co/bRqXv40p/Enceintes-Colonnes-JMR-Euterpe-Supr-me.jpg" alt="Enceintes JMR" class="thumbnail">
+                    </a>
+                    <p>Enceintes</p>
+                </div>
+                
+                <div class="photo-item">
+                    <a href="https://ibb.co/3mDKC6DG" target="_blank">
+                        <img src="https://i.ibb.co/3mDKC6DG/Alimentation-Double-Lynx.jpg" alt="Alimentations Lynx" class="thumbnail">
+                    </a>
+                    <p>Alim Double</p>
+                </div>
+
+                <div class="photo-item">
+                    <a href="https://ibb.co/FLmnjw8m" target="_blank">
+                        <img src="https://i.ibb.co/FLmnjw8m/Alimentation-Lin-aire-triple-Lynx.jpg" alt="Alimentations Lynx Triple" class="thumbnail">
+                    </a>
+                    <p>Alim Triple</p>
+                </div>
+
+                <div class="photo-item">
+                    <a href="https://ibb.co/LXTTP1qF" target="_blank">
+                        <img src="https://i.ibb.co/LXTTP1qF/Alimentation-Ifi-Audio-Power-Elite-2.jpg" alt="Alimentation IFI iPower Elite" class="thumbnail">
+                    </a>
+                    <p>IFI iPower</p>
+                </div>
+
+                <div class="photo-item">
+                    <a href="https://ibb.co/jNd0NML" target="_blank">
+                        <img src="https://i.ibb.co/jNd0NML/Barrette-Secteur-Vovox-Excelsus.jpg" alt="Barrette Vovox" class="thumbnail">
+                    </a>
+                    <p>Barrette</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>Installation Hi-Fi Dématérialisée</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Animation simple pour les étapes au défilement
+        document.addEventListener('DOMContentLoaded', function() {
+            const steps = document.querySelectorAll('.flow-step');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            steps.forEach(step => {
+                step.style.opacity = '0';
+                step.style.transform = 'translateY(20px)';
+                step.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(step);
+            });
+        });
+    </script>
+</body>
+</html>
